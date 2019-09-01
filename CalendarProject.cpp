@@ -2,12 +2,9 @@
 #include <conio.h> 
 #include <windows.h> 
  
-char dAY[][10]={"Sunday", "Monday", "Tuesday",
-	 "Wednesday", "Thursday", "Friday", "Saturday"};
+char dAY[][10]={"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	 
-char monTH[][10]={"ERROR","JANUARY", "FEBRUARY", "MARCH", "APRIL", 
-	 "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", 
-	 "NOVEMBER", "DECEMBER"};
+char monTH[][10]={"ERROR","JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"};
 	
 int leapcheck(int year); //////////////////////////////////// By ****: Line 90 to 101
 	
@@ -21,8 +18,8 @@ void calen(int day, int month, int year); ////////// By *****: line 136 to 154
 
 void printonfile(int day, int month, int year); // Extra Feature: not discussed in the presentation(the latest update): line 156 to END
 
-//**************************************************************************************************************** MAIN
-int main(){	                                                                                                     /*MAIN*/
+//******************************************************************************************************************** MAIN
+int main(){	                                                                                                      /*MAIN*/
 	int day,month,year;                                                                                           /*MAIN*/
 	int i=0, j=0;                                                                                                 /*MAIN*/
 	                                                                                                              /*MAIN*/
@@ -36,28 +33,28 @@ int main(){	                                                                    
 	scanf("%d",&day);                                                                                             /*MAIN*/
 	                                                                                                              /*MAIN*/
 	D://**************************************************** ALSO JUMPS HERE FROM LAST(line 85)                   /*MAIN*/
-                                                                                                                 /*MAIN*/
-     if(day<1){                                   //Variable Correction                                          /*MAIN*/
-         day=nodamonth(month-1,year); month--;    //Variable Correction                                          /*MAIN*/
-      }                                           //Variable Correction                                          /*MAIN*/
-     if(day>nodamonth(month, year)){              //Variable Correction                                          /*MAIN*/
-	  	j=(int)day/nodamonth(month, year);          //Variable Correction                                          /*MAIN*/
-	  	day-=nodamonth(month, year);                //Variable Correction                                          /*MAIN*/
-	  	month+=(int)j;                              //Variable Correction                                          /*MAIN*/
-      }		                                      //Variable Correction                                          /*MAIN*/
-     if(month>12){                                //Variable Correction                                          /*MAIN*/
-		j=month/12; month-=12;                      //Variable Correction                                          /*MAIN*/
-		year+=(int)j;                               //Variable Correction                                          /*MAIN*/
+                                                                                                                      /*MAIN*/
+     if(day<1){                                        //Variable Correction                                          /*MAIN*/
+         day=nodamonth(month-1,year); month--;         //Variable Correction                                          /*MAIN*/
+      }                                                //Variable Correction                                          /*MAIN*/
+     if(day>nodamonth(month, year)){                   //Variable Correction                                          /*MAIN*/
+	  	j=(int)day/nodamonth(month, year);     //Variable Correction                                          /*MAIN*/
+	  	day-=nodamonth(month, year);           //Variable Correction                                          /*MAIN*/
+	  	month+=(int)j;                         //Variable Correction                                          /*MAIN*/
+      }		                                       //Variable Correction                                          /*MAIN*/
+     if(month>12){                                     //Variable Correction                                          /*MAIN*/
+		j=month/12; month-=12;                 //Variable Correction                                          /*MAIN*/
+		year+=(int)j;                          //Variable Correction                                          /*MAIN*/
 	   }                                           //Variable Correction                                          /*MAIN*/
-     if(month==0){                                //Variable Correction                                          /*MAIN*/
-		year--; month=12;                           //Variable Correction                                          /*MAIN*/
+     if(month==0){                                     //Variable Correction                                          /*MAIN*/
+		year--; month=12;                      //Variable Correction                                          /*MAIN*/
 	   }                                           //Variable Correction                                          /*MAIN*/
-                                                                                                                 /*MAIN*/
-	system("cls");//********************************************************************* FROM <WINDOWS.H>	     /*MAIN*/
+                                                                                                                      /*MAIN*/
+	system("cls");                                                                                         	      /*MAIN*/
 	                                                                                                              /*MAIN*/
-   printf("------------%s, %s %d, %d-------------", dAY[week(day,month,year)], monTH[month], day, year);         /*MAIN*/
+   printf("------------%s, %s %d, %d-------------", dAY[week(day,month,year)], monTH[month], day, year);              /*MAIN*/
 	                                                                                                              /*MAIN*/
-	calen(day, month, year);                                                                                      /*MAIN*/
+	calen(day, month, year); //defined in line 133                                                                /*MAIN*/
 	                                                                                                              /*MAIN*/
 	printf("__ _ _ _ _ _ _ _ _ _ _ |Press| _ _ _ _ _ _ _ _ _ _ __\n");                                            /*MAIN*/
 	printf("|| P: for previous| _ _ _ _ __ _ _ _ _ |N: for next||\n");                                            /*MAIN*/
@@ -66,25 +63,25 @@ int main(){	                                                                    
 	                                                                                                              /*MAIN*/
 	j=toupper(getch());                                                                                           /*MAIN*/
 	if(j==0xE0){                                                                                                  /*MAIN*/
-		switch(getch()){                                                                                           /*MAIN*/
-			case 72: day-=7; break;                                                                                 /*MAIN*/
-         case 80: day+=7; break;                                                                                 /*MAIN*/
-         case 75: day--; break;                                                                                  /*MAIN*/
-         case 77: day++; break;                                                                                  /*MAIN*/
-		}                                                                                                          /*MAIN*/
+		switch(getch()){                                                                                      /*MAIN*/
+			case 72: day-=7; break;                                                                       /*MAIN*/
+         case 80: day+=7; break;                                                                                      /*MAIN*/
+         case 75: day--; break;                                                                                       /*MAIN*/
+         case 77: day++; break;                                                                                       /*MAIN*/
+		}                                                                                                     /*MAIN*/
 	}                                                                                                             /*MAIN*/
 	else if(j=='P') month--;                                                                                      /*MAIN*/
-   else if(j=='N') month++;                                                                                      /*MAIN*/
-   else if(j=='S'){                                                                                              /*MAIN*/
-   	printonfile(day, month, year);                                                                             /*MAIN*/
-   	system("cls");                                                                                             /*MAIN*/
-   	printf("The calendar is saved with file name: \"Calendar.txt\"");                                          /*MAIN*/                                                 /*MAIN*/                                                                             /*MAIN*/
-   	getch();                                                                                                   /*MAIN*/
+   else if(j=='N') month++;                                                                                           /*MAIN*/
+   else if(j=='S'){                                                                                                   /*MAIN*/
+   	printonfile(day, month, year);  //Defined on line  153                                                        /*MAIN*/
+   	system("cls");                                                                                                /*MAIN*/
+   	printf("The calendar is saved with file name: \"Calendar.txt\"");                                             /*MAIN*/                                                 /*MAIN*/                                                                             /*MAIN*/
+   	getch();                                                                                                      /*MAIN*/
 	}                                                                                                             /*MAIN*/
-   else return 0;                                                                                                /*MAIN*/
+   else return 0;                                                                                                     /*MAIN*/
 	goto D; // Will go to Variable Corrections (line 38)                                                          /*MAIN*/
-                                                                                                                 /*MAIN*/
-}                                                                                                                /*MAIN*/
+                                                                                                                      /*MAIN*/
+}                                                                                                                     /*MAIN*/
 //********************************************************************************************************* END OF MAIN
 
 int leapcheck(int year){ 
@@ -133,7 +130,7 @@ int week(int day, int month, int year){
 	return checker;
 }
 
-void calen(int day, int month, int year){
+void calen(int day, int month, int year){ //used in line 57
 	int c=1, m=1, i,j;
 	int b=week(1,month,year);
 	int k=nodamonth(month,year);
@@ -153,7 +150,7 @@ void calen(int day, int month, int year){
 	}
 }                                           
 
-void printonfile(int day, int month, int year){
+void printonfile(int day, int month, int year){  //Used on line 76
 	
 	int c=1, m=1, i,j;
 	FILE *fp;
